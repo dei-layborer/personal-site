@@ -1,0 +1,185 @@
+@font-face {
+    font-family: "Major Mono Display";
+    src: url('faces\ of\ dearth/majorMonoDisplay-regular.woff2') format("woff2"),
+         url('faces\ of\ dearth/majorMonoDisplay-regular.woff') format("woff");
+}
+
+@font-face {
+    font-family: "IBM Plex Mono";
+    src: url('faces\ of\ dearth/ibmplexmono-thin-webfont.woff2') format('woff2'),
+         url('faces\ of\ dearth/ibmplexmono-thin-webfont.woff') format('woff');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "IBM Plex Mono";
+    src: url('faces\ of\ dearth/ibmplexmono-regular-webfont.woff2') format('woff2'),
+         url('faces\ of\ dearth/ibmplexmono-regular-webfont.woff') format('woff');
+    font-weight: 400;
+}
+
+:root {
+
+    --fg-color: #050505;
+    --bg-color: #f7f7f7;
+    --accent-color: #e60073;
+    --shadow-color: #05050555;
+
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ff0066' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/*******************************
+ *      HOME PAGE CONTENT      *
+ *******************************/
+
+#home-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+logo {
+    font-family: "Major Mono Display";
+    font-size: 10vh;
+    line-height: 6.75vh;
+    width: min-content;
+    cursor: default;
+
+}
+
+logo u {
+    /* browser support isn't universal for the shorthand property */
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.4vh;
+    text-underline-offset: -0.4vh;
+    text-decoration-skip-ink: none;
+}
+
+#links {
+    width: fit-content;             /* had to use this rather than flex-basis due to differences in how they're handled in Chrome (combined with setting the display to block for the individual links.  */
+    padding: 0;                      
+    text-align: right;
+    font-family: "IBM Plex Mono";
+    font-weight: 200;
+    font-size: 4vh;
+    line-height: 4.25vh;
+    text-transform: uppercase;
+    
+}
+
+#links a {
+    display: block;
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-right: 0;
+    padding: 0 3vh 0 1vh;
+    background-image: linear-gradient(var(--fg-color) 0 0);
+    background-size: 2vh 100%;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+#links a::after {
+    content: '';
+    position: absolute;
+    right: 1.5vh;
+    width: 0.5vh;
+    height: 4.25vh;
+    background-color: var(--accent-color);
+    box-shadow: 4px 4px 6px 3px var(--shadow-color);
+    z-index: 5;
+}
+
+#links a:hover {
+    background-size: 100% 0.5vh;
+    background-position: 100% 90%;
+}
+
+.activelink {
+    background-size: 100% 0.5vh !important;
+    background-position: 100% 90% !important;
+}
+
+.content {
+    position: absolute;
+    top: 57.5vh;
+    left: 1.5vh;
+    width: 60vh;
+    border: 0;
+    border-top: 12px solid var(--fg-color);
+    clip-path: inset(0% 0% 0% 0%);
+    transition: clip-path 0.4s;
+}
+
+.content p {
+    font-family: "IBM Plex Mono";
+    font-size: 1.1em;
+}
+
+.content b {
+    font-weight: bold;
+    padding: 0 0.25em;
+    color: var(--bg-color);
+    background-color: var(--fg-color);
+}
+
+.content a {
+    color: var(--accent-color);
+    text-decoration: none;
+    background-image: linear-gradient(var(--accent-color) 0 0);
+    background-size: 0% 2px;
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    transition: all 0.4s;
+}
+
+.content a:hover {
+    background-size: 100% 2px;
+}
+
+.closePage {
+    width: fit-content;
+    cursor: pointer;
+}
+
+.closePage::before {
+    content: '>';
+    color: var(--accent-color);
+    margin-right: 0.25em;
+}
+
+.closePage::after {
+    content: 'close';
+    position: relative;
+    right: 3em;
+    color: var(--accent-color);
+    clip-path: inset(0% 100% 0% 0%);
+    transition: clip-path 0.4s;
+}
+
+.closePage:hover::after {
+    clip-path: inset(0% 0% 0% 0%);
+} 
+
+.hidden {
+    clip-path: inset(0% 100% 0% 0%) !important;
+}
